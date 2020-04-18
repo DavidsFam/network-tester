@@ -14,6 +14,20 @@ get set up
 ./setup.sh
 ```
 
+grafana can be accessed in a browser at [localhost:3000](http://localhost:3000). default login is `admin`/`admin`; change at your leisure.
+
+you'll have to set up your prometheus datasource:
+add data source
+![](.github/add_data_source.png)
+
+put in `http://192.168.1.29:9090` as the url
+![](.github/data_source_url.png)
+
+save and test
+![](.github/save_and_test.png)
+
+and then import the dashboard:
+
 run network tester
 ```
 python3 main.py
