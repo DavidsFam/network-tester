@@ -1,5 +1,6 @@
 from datetime import datetime
 from subprocess import check_output, CalledProcessError
+from halo import Halo
 import json
 
 class SpeedTest:
@@ -10,10 +11,11 @@ class SpeedTest:
         self.download = results["download"]
         self.upload = results["upload"]
         self.end_time = datetime.now().timestamp()
-    
+
+    @Halo(text='connecting...', spinner='dots')
     def run_speedtest(self):
         try:
-            return json.loads(check_output(["speedtest", "--json"]))
+            return json.loads(check_output(["speedtest", "-f", "json"]))
         except CalledProcessError as e:
             print(f"speedtest failed with {e}")
             return {
