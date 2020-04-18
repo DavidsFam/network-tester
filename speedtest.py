@@ -17,7 +17,7 @@ class SpeedTest:
     @Halo(text='testing...', spinner='dots')
     def run_speedtest(self):
         try:
-            return json.loads(check_output(["speedtest", "-f", "json"]))
+            return json.loads(check_output(["speedtest", "-f", "json"], timeout=60))
         except CalledProcessError as e:
             print(f"speedtest failed with {e}")
             return {
