@@ -2,9 +2,9 @@ from prometheus_client import CollectorRegistry, Gauge, push_to_gateway
 
 registry = CollectorRegistry()
 download_bandwidth_gauge = Gauge('download_bandwidth', 'download bandwidth', ['network'], registry=registry)
-download_bytes_gauge = Gauge('download_speed', 'download speed (bits per second)', ['network'], registry=registry)
+download_bytes_gauge = Gauge('download_speed', 'download speed (bytes per second)', ['network'], registry=registry)
 upload_bandwidth_gauge = Gauge('upload_bandwidth', 'upload bandwidth', ['network'], registry=registry)
-upload_bytes_gauge = Gauge('upload_speed', 'upload speed (bits per second)', ['network'], registry=registry)
+upload_bytes_gauge = Gauge('upload_speed', 'upload speed (bytes per second)', ['network'], registry=registry)
 ping_gauge = Gauge('ping_latency', 'download speed (milliseconds)', ['network'], registry=registry)
 
 def record(network, test):
