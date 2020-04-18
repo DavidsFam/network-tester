@@ -7,9 +7,11 @@ class SpeedTest:
     def __init__(self):
         self.start_time = datetime.now().timestamp()
         results = self.run_speedtest()
-        self.ping = results["ping"]
-        self.download = results["download"]
-        self.upload = results["upload"]
+        self.ping = results["ping"]["latency"]
+        self.download_bytes = results["download"]["bytes"]
+        self.download_bandwidth = results["download"]["bandwidth"]
+        self.upload_bytes = results["upload"]["bytes"]
+        self.upload_bandwidth = results["download"]["bandwidth"]
         self.end_time = datetime.now().timestamp()
 
     @Halo(text='connecting...', spinner='dots')
@@ -29,6 +31,6 @@ class SpeedTest:
 start time: {self.start_time}
 end time:   {self.end_time}
 ping:       {self.ping}
-download:   {self.download}
-upload:     {self.upload}
+download:   {self.download} #todo torkel
+upload:     {self.upload} #todo torkel
 """)
