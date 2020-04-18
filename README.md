@@ -6,12 +6,10 @@ monitors our subpar network connection(s) up in the middle of the woods
 todo
 
 # running locally
-## on mac:
-install the speedtest CLI using `homebrew`:
+## [on mac](#on-mac):
+get set up:
 ```
-brew tap teamookla/speedtest
-brew update
-brew install speedtest --force
+./setup.sh
 ```
 
 run
@@ -19,4 +17,6 @@ run
 python3 main.py
 ```
 
-
+## on non-mac:
+1. buy a mac
+2. see [on mac](#on-mac)
