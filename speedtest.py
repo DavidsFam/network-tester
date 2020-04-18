@@ -28,9 +28,11 @@ class SpeedTest:
 
     def print_results(self):
         print(f"""
-start time: {self.start_time}
-end time:   {self.end_time}
-ping:       {self.ping}
-download:   {self.download_bytes}
-upload:     {self.upload_bytes}
+start time:         {self.start_time}
+end time:           {self.end_time}
+ping:               {self.ping}
+download bytes:     {self.download_bytes}
+download bandwidth: {self.download_bandwidth}
+upload bytes:       {self.upload_bytes}
+upload bandwidth:   {self.upload_bandwidth}
 """)
