@@ -9,7 +9,7 @@ def test(network):
             wifi.connect(network)
         print(f"testing speed on {wifi.get_current_network_name()}")
         test = SpeedTest()
-        test.print_results() # todo aggregate and display these someplace
+        test.print_results()
         metrics.record(network, test)
     except wifi.ConnectionException as e:
         print(e)
