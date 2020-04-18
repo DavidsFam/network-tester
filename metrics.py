@@ -1,6 +1,7 @@
 from prometheus_client import CollectorRegistry, Gauge, push_to_gateway
 
 registry = CollectorRegistry()
+#todo torkel
 download_gauge = Gauge('download_speed', 'download speed (bits per second)', ['network'], registry=registry)
 upload_gauge = Gauge('upload_speed', 'upload speed (bits per second)', ['network'], registry=registry)
 ping_gauge = Gauge('ping_latency', 'download speed (milliseconds)', ['network'], registry=registry)
