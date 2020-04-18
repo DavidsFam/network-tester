@@ -10,7 +10,7 @@ class ConnectionException(Exception):
 def get_current_network_name():
     cur_network = check_output(["networksetup", "-getairportnetwork", "en0"]).decode("utf-8")
     if(re.match(NETWORKSETUP_CURRENT_NETWORK_REGEX, cur_network)):
-        return re.search("Current Wi-Fi Network:(.*)", cur_network).group(1)
+        return re.search("Current Wi-Fi Network: (.*)", cur_network).group(1)
     else:
         raise ConnectionException("not currently connected to wifi")
 
@@ -19,10 +19,9 @@ def get_all_possible_networks():
     all_previously_connected_networks = check_output(["networksetup", "-listpreferredwirelessnetworks", "en0"]).decode("utf-8")
     return all_previously_connected_networks.split("\n\t")[1:]
 
-@Halo(text='Connecting...', spinner='dots')
+@Halo(text='connecting...', spinner='dots')
 def connect(network):
-    connection_result = check_output(["networksetup", "-setairportnetwork", "en0", network, WIFI_PASSWORD]).decode("utf-8")
+    connection_error = check_output(["networksetup", "-setairportnetwork", "en0", network, WIFI_PASSWORD]).decode("utf-8")
     # todo figure out the real error state here; also determine if we have to sleep
-    print(connection_result)
-    if(re.match("Error.*", connection_result)):
-        raise ConnectionException(f"failed to connect to {network}")
+    if(connection_error):
+        raise ConnectionException(f"failed to connect to {network} with error: {connection_error}")
