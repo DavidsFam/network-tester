@@ -1,0 +1,9 @@
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+  - job_name: 'pushgateway'
+    honor_labels: true
+    static_configs:
+      # todo this still isnt being scraped properly
+      - targets: ['172.20.10.5:9091']

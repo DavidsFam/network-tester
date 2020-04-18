@@ -10,6 +10,11 @@ case "$response" in
         brew tap teamookla/speedtest
         brew update
         brew install speedtest --force
+        brew cask install docker
+        open -a Docker
+        docker run --name prometheus -d -p 9090:9090 -v $PWD/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+        docker run --name pushgateway -d -p 9091:9091 prom/pushgateway
+        docker run --name grafana -i -d -p 3000:3000 grafana/grafana
         ;;
     *)
         echo "bye"
