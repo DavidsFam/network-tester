@@ -14,16 +14,16 @@ class SpeedTest:
         self.upload_bandwidth = results["download"]["bandwidth"]
         self.end_time = datetime.now().timestamp()
 
-    @Halo(text='connecting...', spinner='dots')
+    @Halo(text='testing...', spinner='dots')
     def run_speedtest(self):
         try:
             return json.loads(check_output(["speedtest", "-f", "json"]))
         except CalledProcessError as e:
             print(f"speedtest failed with {e}")
             return {
-                "ping": 0, #todo technically this should by infinity
-                "upload": 0,
-                "download": 0
+                "ping": {"latency": 0}, #todo technically this should by infinity
+                "upload": {"bytes": 0, "bandwidth": 0},
+                "download": {"bytes": 0, "bandwidth": 0}
             }
 
     def print_results(self):
@@ -31,6 +31,6 @@ class SpeedTest:
 start time: {self.start_time}
 end time:   {self.end_time}
 ping:       {self.ping}
-download:   {self.download} #todo torkel
-upload:     {self.upload} #todo torkel
+download:   {self.download_bytes}
+upload:     {self.upload_bytes}
 """)
