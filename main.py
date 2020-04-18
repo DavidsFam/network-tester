@@ -4,7 +4,7 @@ import metrics
 
 def test(network):
     try:
-        if(not wifi.get_current_network_name() == network):
+        if(not wifi.maybe_get_current_network_name() == network):
             print(f"attempting to connect to {network}")
             wifi.connect(network)
         print(f"testing speed on {wifi.get_current_network_name()}")

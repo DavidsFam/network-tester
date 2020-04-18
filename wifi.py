@@ -8,12 +8,16 @@ NETWORKSETUP_CURRENT_NETWORK_REGEX = "Current Wi-Fi Network:(.*)"
 class ConnectionException(Exception):
     pass
 
-def get_current_network_name():
+def maybe_get_current_network_name():
     cur_network = check_output(["networksetup", "-getairportnetwork", "en0"]).decode("utf-8")
     if(re.match(NETWORKSETUP_CURRENT_NETWORK_REGEX, cur_network)):
         return re.search("Current Wi-Fi Network: (.*)", cur_network).group(1)
-    else:
+
+def get_current_network_name():
+    cur_network = maybe_get_current_network_name()
+    if(cur_network is None):
         raise ConnectionException("not currently connected to wifi")
+    return cur_network
 
 def get_all_possible_networks():
     # todo this could maybe be cleaned up; gotta be a better way to get available networks
