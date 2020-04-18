@@ -16,7 +16,6 @@ get set up
 
 grafana can be accessed in a browser at [localhost:3000](http://localhost:3000). default login is `admin`/`admin`; change at your leisure.
 
-you'll have to set up your prometheus datasource:
 add data source
 ![](.github/add_data_source.png)
 
@@ -27,6 +26,7 @@ save and test
 ![](.github/save_and_test.png)
 
 and then import the dashboard:
+![](.github/import_dashboard.png)
 
 run network tester
 ```
