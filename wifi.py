@@ -19,7 +19,7 @@ def get_all_possible_networks():
     all_previously_connected_networks = check_output(["networksetup", "-listpreferredwirelessnetworks", "en0"]).decode("utf-8")
     return all_previously_connected_networks.split("\n\t")[1:]
 
-@Halo(text='Connecting', spinner='dots')
+@Halo(text='Connecting...', spinner='dots')
 def connect(network):
     connection_result = check_output(["networksetup", "-setairportnetwork", "en0", network, WIFI_PASSWORD]).decode("utf-8")
     # todo figure out the real error state here; also determine if we have to sleep
