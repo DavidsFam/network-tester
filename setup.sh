@@ -4,7 +4,7 @@ echo $password  | tr -d '\n' > .wifipassword
 
 echo "want to install requirements?"
 read install
-case "$response" in
+case "$install" in
     [yY][eE][sS]|[yY]) 
         pip3 install -r requirements.txt
         brew tap teamookla/speedtest
