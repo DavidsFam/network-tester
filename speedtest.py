@@ -1,5 +1,5 @@
 from datetime import datetime
-from subprocess import check_output
+from subprocess import check_output, CalledProcessError
 import json
 
 class SpeedTest:
@@ -12,7 +12,15 @@ class SpeedTest:
         self.end_time = datetime.now().timestamp()
     
     def run_speedtest(self):
-        return json.loads(check_output(["speedtest", "--json"]))
+        try:
+            return json.loads(check_output(["speedtest", "--json"]))
+        except CalledProcessError as e:
+            print(f"speedtest failed with {e}")
+            return {
+                "ping": 0, #todo technically this should by infinity
+                "upload": 0,
+                "download": 0
+            }
 
     def print_results(self):
         print(f"""
