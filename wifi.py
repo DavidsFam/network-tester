@@ -1,6 +1,7 @@
 from subprocess import check_output, call
 import re
 from halo import Halo
+import time
 
 WIFI_PASSWORD = open(".wifipassword","r+").read()
 NETWORKSETUP_CURRENT_NETWORK_REGEX = "Current Wi-Fi Network:(.*)"
@@ -22,6 +23,6 @@ def get_all_possible_networks():
 @Halo(text='connecting...', spinner='dots')
 def connect(network):
     connection_error = check_output(["networksetup", "-setairportnetwork", "en0", network, WIFI_PASSWORD]).decode("utf-8")
-    # todo figure out the real error state here; also determine if we have to sleep
+    time.sleep(10)
     if(connection_error):
         raise ConnectionException(f"failed to connect to {network} with error: {connection_error}")
