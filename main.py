@@ -8,6 +8,6 @@ if __name__ == "__main__":
             wifi.connect(network)
             print(f"Testing speed on {wifi.get_current_network_name()}")
             test = SpeedTest()
-            test.print_results()
+            test.print_results() # todo aggregate and display these someplace
         except wifi.ConnectionException as e:
             print(e)
