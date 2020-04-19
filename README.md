@@ -19,7 +19,7 @@ grafana can be accessed in a browser at [localhost:3000](http://localhost:3000).
 add data source
 ![](.github/add_data_source.png)
 
-put in `http://192.168.1.29:9090` as the url (we configured prometheus to run on that port in the [setup script](https://github.com/DavidsFam/network-tester/blob/master/setup.sh#L15))
+put in `http://prometheus:9090` as the url (we configured prometheus to run on that port in the [setup script](https://github.com/DavidsFam/network-tester/blob/master/setup.sh#L15))
 ![](.github/data_source_url.png)
 
 save and test

@@ -6,4 +6,4 @@ scrape_configs:
     honor_labels: true
     static_configs:
       # todo this still isnt being scraped properly
-      - targets: ['192.168.1.29:9091']
+      - targets: ['pushgateway:9091']
