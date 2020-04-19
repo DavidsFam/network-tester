@@ -2,6 +2,7 @@ from subprocess import check_output, call
 import re
 from halo import Halo
 import time
+import os
 
 WIFI_PASSWORD = open(".wifipassword","r+").read()
 NETWORKSETUP_CURRENT_NETWORK_REGEX = "Current Wi-Fi Network:(.*)"
@@ -27,6 +28,13 @@ def get_all_possible_networks():
 @Halo(text='connecting...', spinner='dots')
 def connect(network):
     connection_error = check_output(["networksetup", "-setairportnetwork", "en0", network, WIFI_PASSWORD]).decode("utf-8")
-    time.sleep(10)
+    time.sleep(30) # i guess the network takes a little while after it's been connected to
     if(connection_error):
         raise ConnectionException(f"failed to connect to {network} with error: {connection_error}")
+
+def check_internet_connectivity():
+    response = os.system("ping -c 1 google.com")
+    if response == 0:
+        return True
+    else:
+        return False

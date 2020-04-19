@@ -1,5 +1,5 @@
 from datetime import datetime
-from subprocess import check_output, CalledProcessError
+from subprocess import check_output, CalledProcessError, TimeoutExpired
 from halo import Halo
 import json
 
@@ -13,17 +13,19 @@ class SpeedTest:
         self.upload_bytes = results["upload"]["bytes"]
         self.upload_bandwidth = results["download"]["bandwidth"]
         self.end_time = datetime.now().timestamp()
+        self.passed = "failed" not in results
 
     @Halo(text='testing...', spinner='dots')
     def run_speedtest(self):
         try:
             return json.loads(check_output(["speedtest", "-f", "json"], timeout=60))
-        except CalledProcessError as e:
+        except (CalledProcessError, TimeoutExpired) as e:
             print(f"speedtest failed with {e}")
             return {
                 "ping": {"latency": 0}, #todo technically this should by infinity
                 "upload": {"bytes": 0, "bandwidth": 0},
-                "download": {"bytes": 0, "bandwidth": 0}
+                "download": {"bytes": 0, "bandwidth": 0},
+                "failed": True
             }
 
     def print_results(self):
