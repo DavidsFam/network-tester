@@ -1,5 +1,7 @@
 # network-tester
 
+![](.github/example.png)
+
 monitors our subpar network connection(s) up in the middle of the woods
 
 ![](.github/notsureif.gif)
@@ -16,16 +18,7 @@ get set up
 
 grafana can be accessed in a browser at [localhost:3000](http://localhost:3000). default login is `admin`/`admin`; change at your leisure.
 
-add data source
-![](.github/add_data_source.png)
-
-put in `http://prometheus:9090` as the url (we configured prometheus to run on that port in the [setup script](https://github.com/DavidsFam/network-tester/blob/master/setup.sh#L15))
-![](.github/data_source_url.png)
-
-save and test
-![](.github/save_and_test.png)
-
-and then import the dashboard
+to import the dashboard ([Dashboard.json](Dashboard.json))
 ![](.github/import_dashboard.png)
 
 run network tester
