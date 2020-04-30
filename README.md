@@ -13,7 +13,7 @@ get set up
 ./setup.sh
 ```
 
-grafana can be accessed in a browser at [localhost:3000](http://localhost:3000). default login is `admin`/`admin`; change at your leisure; the network speed dashboard has been automatically generated.
+grafana can be accessed in a browser at [localhost:3000](http://localhost:3000). default login is `admin`/`admin`; change at your leisure. the network speed dashboard has been automatically generated.
 
 run network tester
 ```
