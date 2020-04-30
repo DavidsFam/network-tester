@@ -14,3 +14,11 @@ def record(network, test):
     upload_bytes_gauge.labels(network=network).set(test.upload_bytes)
     ping_gauge.labels(network=network).set(test.ping)
     push_to_gateway('http://localhost:9091', job='network-config-test', registry=registry)
+
+def recordFailure(network):
+    download_bandwidth_gauge.labels(network=network).set(0)
+    download_bytes_gauge.labels(network=network).set(0)
+    upload_bandwidth_gauge.labels(network=network).set(0)
+    upload_bytes_gauge.labels(network=network).set(0)
+    ping_gauge.labels(network=network).set(0)
+    push_to_gateway('http://localhost:9091', job='network-config-test', registry=registry)

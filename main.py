@@ -3,8 +3,6 @@ import wifi
 import metrics
 import time
 
-STUPID_HACKY_STOPPING_POINT = "Polar Bear Den"
-
 def test(network):
     try:
         if(not wifi.maybe_get_current_network_name() == network):
@@ -17,15 +15,13 @@ def test(network):
             if(wifi.check_internet_connectivity()):
                 print("********** got a failed test but the internet *is* connected")
         metrics.record(network, test)
-        if(network == STUPID_HACKY_STOPPING_POINT):
-            raise RuntimeError("you hit your stupid hacky stopping point you moron")
     except wifi.ConnectionException as e:
+        metrics.recordFailure(network)
         print(e)
-        if(network == STUPID_HACKY_STOPPING_POINT):
-            raise RuntimeError("you hit your stupid hacky stopping point you moron")
 
 def test_all():
-    [test(network) for network in wifi.get_all_possible_networks()]
+    networks = ['Davids', 'Davids 5', 'Fairpoint8663_Ext'] # todo wifi.get_all_possible_networks() is not ready for prime time just yet
+    [test(network) for network in networks]
 
 def run(network):
     if(args.network):
