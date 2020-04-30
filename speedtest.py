@@ -22,7 +22,7 @@ class SpeedTest:
         except (CalledProcessError, TimeoutExpired) as e:
             print(f"speedtest failed with {e}")
             return {
-                "ping": {"latency": 0}, #todo technically this should by infinity
+                "ping": {"latency": 0}, # todo technically this should by infinity
                 "upload": {"bytes": 0, "bandwidth": 0},
                 "download": {"bytes": 0, "bandwidth": 0},
                 "failed": True

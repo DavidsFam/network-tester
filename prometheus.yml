@@ -5,5 +5,4 @@ scrape_configs:
   - job_name: 'pushgateway'
     honor_labels: true
     static_configs:
-      # todo this still isnt being scraped properly
       - targets: ['pushgateway:9091']

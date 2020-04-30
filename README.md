@@ -6,9 +6,6 @@ monitors our subpar network connection(s) up in the middle of the woods
 
 ![](.github/notsureif.gif)
 
-## deployment
-todo
-
 ## running locally
 ### [on mac](#on-mac):
 get set up
@@ -16,10 +13,7 @@ get set up
 ./setup.sh
 ```
 
-grafana can be accessed in a browser at [localhost:3000](http://localhost:3000). default login is `admin`/`admin`; change at your leisure.
-
-to import the dashboard ([Dashboard.json](Dashboard.json))
-![](.github/import_dashboard.png)
+grafana can be accessed in a browser at [localhost:3000](http://localhost:3000). default login is `admin`/`admin`; change at your leisure; the network speed dashboard has been automatically generated.
 
 run network tester
 ```

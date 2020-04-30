@@ -17,8 +17,8 @@ case "$install" in
         docker run --name pushgateway --network localnet -d -p 9091:9091 prom/pushgateway
         docker run --name grafana --network localnet -i -d -p 3000:3000 grafana/grafana
         curl --location --request POST 'admin:admin@localhost:3000/api/datasources' \
-            --header 'Content-Type: application/json' \
-            --data-raw '{
+            -H 'Content-Type: application/json' \
+            -d '{
                 "name": "Prometheus",
                 "type": "prometheus",
                 "access": "proxy",
@@ -26,11 +26,10 @@ case "$install" in
                 "basicAuth": false,
                 "isDefault": true
             }'
-        dashboard=`cat Dashboard.json`
-        # todo find a way to strip the IDs out so grafana doesnt think this is an update????
-        # curl --location --request POST 'admin:admin@localhost:3000/api/dashboards/db' \
-        #     --header 'Content-Type: application/json' \
-        #     --data-raw '{"dashboard": "$dashboard"}'
+        curl --location --request POST 'admin:admin@localhost:3000/api/dashboards/db' \
+            -H 'Content-Type: application/json' \
+            -d "$(cat Dashboard.json)"
+       # todo set network test to default home dash https://grafana.com/docs/grafana/latest/http_api/preferences/#update-current-user-prefs
         ;;
     *)
         echo "bye"
