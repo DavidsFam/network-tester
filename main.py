@@ -20,8 +20,11 @@ def test(network):
         print(e)
 
 def test_all():
-    networks = ['Davids', 'Davids 5', 'Fairpoint8663_Ext'] # todo wifi.get_all_possible_networks() is not ready for prime time just yet
-    [test(network) for network in networks]
+    networks = wifi.get_available_networks()
+    if networks:
+        [test(network) for network in networks]
+    else:
+        print("couldn't find any networks to test")
 
 def run(network):
     if(args.network):

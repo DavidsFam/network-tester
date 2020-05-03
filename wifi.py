@@ -20,10 +20,13 @@ def get_current_network_name():
         raise ConnectionException("not currently connected to wifi")
     return cur_network
 
-def get_all_possible_networks():
-    # todo this could maybe be cleaned up; gotta be a better way to get available networks
-    all_previously_connected_networks = check_output(["networksetup", "-listpreferredwirelessnetworks", "en0"]).decode("utf-8")
-    return all_previously_connected_networks.split("\n\t")[1:]
+@Halo(text='scanning for networks...', spinner='dots')
+def get_available_networks():
+    available_networks = check_output(["airport", "--scan", "--xml"]).decode("utf-8")
+    if(len(available_networks) > 0): # todo sometimes airport just immediately returns an empty result
+        available_network_names = re.findall(r'<key>SSID_STR<\/key>\n\s+<string>(.*)<\/string>', available_networks)
+        print(f"Found networks: {', '.join(available_network_names)}")
+        return available_network_names
 
 @Halo(text='connecting...', spinner='dots')
 def connect(network):
